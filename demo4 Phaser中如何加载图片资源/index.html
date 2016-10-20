@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var game = new Phaser.Game(300, 400, Phaser.CANVAS, '', {
+        preload: function () {
+            game.load.image('preloading', 'http://www.gbtags.com/gb/laitu/300x400&text=游戏加载中/222222/cccccc');
+            //了解如何使用来图工具，请移步至：http://www.gbtags.com/gb/gblaitu.htm
+        },
+        create: function () {
+            //这里添加图片并且显示到屏幕上
+            game.add.sprite(0, 0 , 'preloading');
+        }
+    })
+</script>
+</body>
+</html>

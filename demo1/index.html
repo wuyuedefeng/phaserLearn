@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- 如果不指定phaser的容器,会默认挂在body下 -->
+<div id="container"></div>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    //------------------创建游戏---------------
+
+    /* new Phaser.Game(width, height, renderer, parent, state, transparent, antialias,physicsConfig);
+     * width: 画布宽度
+     * height: 画布高度
+     * renderer: 渲染方式, Phaser.CANVAS,Phaser.WEBGL,Phaser.AUTO
+     * parent:存放画布元素的容器
+     * state:游戏场景;
+     * transparent:画布元素是否透明,默认不透明;
+     * antialias:是否开启抗锯齿模式;
+     * phCon:物理引擎配置
+     */
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, 'container', state);
+    // true表示暂停
+    // game.paused = false;
+    // game.add; //对游戏工厂的引用
+    // game.camera
+    // game.input 游戏中的用户交互事件的引用
+    // game.load 游戏资源加载模块的引用
+    // game.scale 游戏缩放模块的引用
+    // game.sound
+    // game.stage
+    // game.world
+    // game.particles 游戏粒子系统的引用
+    // game.physics
+    // game.state 游戏场景管理对象的引用
+
+    //------------------创建场景-------------------
+    // 场景管理对象Phaser.StateManager
+    // init()
+    // preload() 加载游戏资源
+    // create 创建游戏显示对象或注册资源
+    // update()
+    // render()
+    // 五个函数的执行顺序,从上到下
+    function state( ) {
+        this.init = function () {
+            console.log('init');
+        };
+        this.preload = function () {
+            console.log('preload');
+        };
+        this.create = function () {
+            console.log('create');
+        };
+        this.update = function () {
+            console.log('upldate');
+        };
+        this.render = function () {
+            console.log('render');
+        };
+    }
+//    //------------------管理场景-----------------
+//    // 添加场景
+//    game.state.add('state', state);
+//    // 启动场景
+//    game.state.start('state');
+
+    //------------------资源加载-----------------
+    // 资源加载对象Phaser.Loader
+    // 资源加载必须写在preload方法中
+    // image(key, url)
+    // spritesheet(key, url, frameWidht, frameHeight) //加载的图片由多张大小相同的图片合成
+    // atlas(key, url, atlasURL, atlasData, format) //atlasURL,atlasData来描述小图片的信息,与spritesheet不同的地方,小图尺寸可以不同
+
+    // audio(key, url, autoDecode)
+    // autdiosprite(key, url, jsonURL, jsonData, autoDecode)
+
+    // text()
+    // xml()
+    // binary()
+
+    // 当某个资源加载完成时触发
+    // game.load.onFileComplete.add(function(){})
+    // game.load.process 表示所有资源的加载进度,百分制
+    // 当所有资源加载完成时触发
+    // game.load.onLoadComplete.add(function(){})
+
+    //---------------------舞台---------------------
+    // 舞台对象Phaser.Stage
+    // game.stage.setBackgroundColor(backgroundColor); //改变舞台背景颜色
+//    function state(game) {
+//        this.create = function () {
+//            game.stage.setBackgroundColor(0xff0000);
+//        }
+//    }
+    //----------------------世界--------------------
+    // 世界对象Phaser.World
+    // game.world.setBounds(x, y, width, height) //设置世界的边界大小
+    //---------------------摄像机------------------
+    // Phaser.Camera //原点在左上角
+    // game.camera.x = 100;
+    // game.camera.y = 100
+    // game.camera.focusOn(disObj);
+    // game.camera.focusOnXY(x, y)
+    // game.camera.follow(target) //跟随
+//    function state(game) {
+//
+//        var jiqimao;
+//        this.preload = function () {
+//            game.load.image('bg', 'assets/bg.jpg');
+//            game.load.image('jiqimao', 'assets/jiqimao.png');
+//        }
+//        this.create = function () {
+//            game.world.setBounds(0, 0, 2000, 600);
+//            game.add.image(0, 0, 'bg');
+//            jiqimao = game.add.image(200, 300, 'jiqimao');//创建一个机器猫
+//            jiqimao.anchor.set(0.5, 0.5);
+//
+//            game.input.onDown.add(function(){
+//                game.camera.focusOn(jiqimao);
+//            });
+//
+//            game.camera.follow(jiqimao);
+//        }
+//        this.update = function () {
+//            var keys = game.input.keyboard.createCursorKeys();
+//            if(keys.right.isDown) game.camera.x += 1;
+//            else if (keys.left.isDown) game.camera.x -= 1;
+//            else if (keys.up.isDown) game.camera.y -= 1;
+//            else if (keys.down.isDown) game.camera.y += 1;
+//
+//            jiqimao.x += 1;
+//        }
+//    }
+    // -------------------缩放控制--------------------
+    // Phaser.ScaleManager
+    // 三种模式: EXACT_FIT 缩放到父元素的大小,SHOW_ALL, USER_SCALE自定义缩放
+    // game.scale.scaleMode = Phaser.ScaleManager.EXACT_FIT;
+//    function state(game) {
+//        this.init = function () {
+//            game.scale.pageAlignHorizontally = true ; //水平居中
+//            game.scale.pageAlignVertically = true;
+//
+//            //game.scale.scaleMode =  Phaser.ScaleManager.EXACT_FIT;
+//            //game.scale.scaleMode =  Phaser.ScaleManager.SHOW_ALL;
+//            game.scale.scaleMode =  Phaser.ScaleManager.USER_SCALE;
+//            game.scale.setUserScale(0.5, 0.5);
+//        }
+//        this.preload = function () {
+//            game.load.image('jiqimao', 'assets/jiqimao.png');
+//        }
+//        this.create = function () {
+//            game.add.image(game.width/2, game.height/2, 'jiqimao').anchor.set(0.5, 0.5);
+//        }
+//    }
+</script>
+</body>
+</html>

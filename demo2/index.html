@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- 如果不指定phaser的容器,会默认挂在body下 -->
+<div id="container"></div>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    //------------------创建游戏---------------
+
+    /* new Phaser.Game(width, height, renderer, parent, state, transparent, antialias,physicsConfig);
+     * width: 画布宽度
+     * height: 画布高度
+     * renderer: 渲染方式, Phaser.CANVAS,Phaser.WEBGL,Phaser.AUTO
+     * parent:存放画布元素的容器，不指定phaser的容器,会默认挂在body下
+     * state:游戏场景;
+     * transparent:画布元素是否透明,默认不透明;
+     * antialias:是否开启抗锯齿模式;
+     * phCon:物理引擎配置
+     */
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, '', state);
+    function state( ) {
+        this.init = function () {
+            console.log('init');
+
+            game.scale.pageAlignHorizontally = true ; //水平居中
+            game.scale.pageAlignVertically = true;
+//            game.scale.scaleMode =  Phaser.ScaleManager.EXACT_FIT;
+        };
+        this.preload = function () {
+            console.log('preload');
+            game.load.image('jiqimao', 'assets/jiqimao.jpg');
+        };
+        this.create = function () {
+            console.log('create');
+
+            game.world.setBounds(0, 0,600, 400);
+
+            var jiqimao = game.add.sprite(game.world.centerX, game.world.centerY, 'jiqimao');
+            jiqimao.anchor.setTo(0.5, 0.5);
+        };
+//        this.update = function () {
+//            console.log('upldate');
+//        };
+//        this.render = function () {
+//            console.log('render');
+//        };
+    }
+</script>
+</body>
+</html>

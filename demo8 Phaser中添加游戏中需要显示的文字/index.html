@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var game = new Phaser.Game(300, 400, Phaser.CANVAS, '', {
+        preload: function () {
+        },
+        create: function () {
+            var text= "你好，极客标签";
+            var style = {
+                font: "25px 'microsoft yahei',Arial,sans-serif",
+                fill: "#efb73e",
+                align: "center"
+            };
+            this.add.text(game.world.centerX-90, game.world.centerY-10, text, style );
+        }
+    })
+</script>
+</body>
+</html>

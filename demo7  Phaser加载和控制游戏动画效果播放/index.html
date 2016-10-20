@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var game = new Phaser.Game(300, 400, Phaser.CANVAS, '', {
+        preload: function () {
+            //此处加载需要的预加载游戏元素，比如，图片，动画，声音等
+            //这里使用的图片或者JSON格式帧定义，大家可以使用相关工具生成，例如：texturepacker
+            this.load.atlasJSONHash(
+                    'soldier',
+                    'http://cdn.gbtags.com/gblibraryassets/libid39/sprites/running_bot.png',
+                    'http://cdn.gbtags.com/gblibraryassets/libid39/sprites/running_bot.json'
+            );
+        },
+        create: function () {
+            var soldier = this.game.add.sprite(this.game.world.centerX, this.game.world.centerY, 'soldier');
+            soldier.anchor.set(0.5); //设置此资源中心锚定，保证此游戏元素居中
+
+            //开始添加动画
+            soldier.animations.add('gogogo', null, 30, true);
+            //这里可以设置一些参数 '动画名称'， 帧数/s 是否循环播放
+            soldier.animations.play('gogogo', 5, true);
+        }
+    })
+</script>
+</body>
+</html>

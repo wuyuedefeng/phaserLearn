@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var dog;
+    var game = new Phaser.Game(300, 400, Phaser.AUTO, '', {
+        preload: function () {
+            game.load.image('dog', 'dog.gif');
+            //了解如何使用来图工具，请移步至：http://www.gbtags.com/gb/gblaitu.htm
+        },
+        create: function () {
+            //这里添加图片并且显示到屏幕上
+            dog = game.add.sprite(0, 0 , 'dog');
+            dog.anchor.set(0.5);  //这里设置此对象的锚点为中心
+
+            game.physics.startSystem(Phaser.Physics.Arcade); //这里选择使用的物理系统,Phaser.Physics.ARCADE是缺省值
+            game.physics.arcade.enable(dog); //保证dog拥有物理特性
+        },
+        update: function () {
+
+            console.log(dog.outOfBoundsKill);
+
+            //这里设置如果鼠标位置或手机上触摸点距离dog一定像素，则移动dog
+            if (game.physics.arcade.distanceToPointer(dog, game.input.activePointer) > 10){
+                game.physics.arcade.moveToPointer(dog, 300);
+//                console.log('11');
+            }else {
+                dog.body.velocity = 0;
+//                console.log('12');
+            }
+        },
+        // debug
+        render: function () {
+            //这里添加一个debug方法
+            game.debug.inputInfo(32, 300);
+        }
+    })
+</script>
+</body>
+</html>

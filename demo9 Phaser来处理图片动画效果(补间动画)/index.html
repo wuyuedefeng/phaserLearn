@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var game = new Phaser.Game(300, 400, Phaser.CANVAS, '', {
+        preload:function(){
+            game.load.image('animationimage','assets/efb73e.gif');
+        },
+
+        create:function(){
+            var sprite = game.add.sprite(game.world.centerX, game.world.centerY,'animationimage');
+            sprite.anchor.set(0.5);
+
+            var tween = game.add.tween(sprite); //生成这个游戏元素的tween对象
+
+            //注意这里移动的坐标点是此图片中心位置
+            tween.delay(500).to({x:0}, 600).to({x:300}, 600); //移动图片动画
+
+            tween.start();
+
+            tween.loop(); //循环效果
+
+        }
+    })
+</script>
+</body>
+</html>

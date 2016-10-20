@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script src="../bower_components/phaser/build/phaser.min.js"></script>
+<script>
+    var count = 0;
+    var game = new Phaser.Game(300, 400, Phaser.CANVAS, '', {
+        preload: function () {
+            game.load.image('preloading', 'http://www.gbtags.com/gb/laitu/300x400&text=游戏加载中/222222/cccccc');
+            //了解如何使用来图工具，请移步至：http://www.gbtags.com/gb/gblaitu.htm
+        },
+        create: function () {
+            //这里添加图片并且显示到屏幕上
+            var image = game.add.sprite(0, 0 , 'preloading');
+            //启动并添加物理效果
+            game.physics.enable(image, Phaser.Physics.ARCADE);
+
+            //处理图片运动，使用速率效果
+            image.body.velocity.x = 30; //x轴的速率效果
+            image.body.velocity.y = -50; //y轴的逆向速率效果，数值越大移动越快
+        }
+    })
+</script>
+</body>
+</html>
