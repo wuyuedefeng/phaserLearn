@@ -1,8 +1,13 @@
 var playState = {
     create: function () {
         //载入所需资源
-        this.bg = this.game.add.sprite(0,0,'bg');
-        this.bo = this.game.add.sprite(0,0,'bo');
+        // this.bg = this.game.add.sprite(0,0,'bg');
+        this.bg = game.add.tileSprite(0,0, game.world.width, game.world.height, 'bg');
+        this.bg.autoScroll(40, 0);
+
+        // this.bo = this.game.add.sprite(0,0,'bo');
+        this.bo = game.add.tileSprite(0,0, game.world.width, game.world.height, 'bo');
+        this.bo.autoScroll(40, 0);
 
         var spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
